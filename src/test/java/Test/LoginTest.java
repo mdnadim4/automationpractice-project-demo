@@ -9,6 +9,7 @@ public class LoginTest extends Setup {
 
     @Test
     public void userLogin() throws InterruptedException {
+
         LoginPage loginPage = new LoginPage(driver);
         driver.get("http://automationpractice.com/");
         String name = loginPage.doLogin();
@@ -17,6 +18,7 @@ public class LoginTest extends Setup {
 
         Thread.sleep(5000);
         loginPage.logoutBtn.click();
+
     }
 
 }

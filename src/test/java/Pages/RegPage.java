@@ -35,6 +35,7 @@ public class RegPage {
     @FindBy(id = "phone_mobile") WebElement mobilePhone;
     @FindBy(id = "alias") WebElement refAddress;
     @FindBy(id = "submitAccount") WebElement submitBtn;
+    @FindBy(className = "logout") protected WebElement logoutBtn;
     WebDriver driver;
 
     public RegPage(WebDriver driver) {
@@ -42,7 +43,8 @@ public class RegPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void doSignup() {
+    public String doSignup() {
+
         loginBtn.click();
         emailAddress.sendKeys("nadim@test.com");
         createBtn.click();
@@ -53,22 +55,22 @@ public class RegPage {
 
         Select day = new Select(days);
         day.selectByValue("10");
-
         Select month = new Select(months);
         day.selectByValue("10");
-
         Select year = new Select(years);
         day.selectByValue("10");
 
         newsletter.click();
         offer.click();
-
         firstName2.sendKeys("Nadim");
         lastName2.sendKeys("Mahmud");
         company.sendKeys("SJ Innovation LLC");
         address.sendKeys("1223 Franklee Lane");
         city.sendKeys("Allentown");
-        state.sendKeys("PA");
+
+        Select state1 = new Select(state);
+        state1.selectByVisibleText("Pennsylvania");
+
         postcode.sendKeys("18109");
 
         Select country1 = new Select(country);
@@ -79,6 +81,8 @@ public class RegPage {
         mobilePhone.sendKeys("484-519-1312");
         refAddress.sendKeys("New Jersy");
         submitBtn.click();
+
+        return lusername.get(0).getText();
 
 
     }
